@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lene Borges | JC Contabilidade</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              jc: {
+                black: '#000000',
+                white: '#FFFFFF',
+                gold: '#D4AF37',
+                'gold-dark': '#B5952F',
+                'gold-light': '#E8C863',
+              }
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Playfair Display", "serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+      body {
+        background-color: #000000;
+        color: #FFFFFF;
+      }
+
+      /* Filtro prata ajustado para máxima visibilidade e elegância */
+      .bg-silver-overlay {
+        filter: grayscale(100%) brightness(1.15) contrast(1.1);
+      }
+
+      .luxury-glass-card {
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        box-shadow: 
+          0 40px 100px -25px rgba(0, 0, 0, 0.8),
+          0 15px 40px -10px rgba(212, 175, 55, 0.1),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .luxury-glass-btn {
+        background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(15, 15, 15, 0.8) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        color: #FFFFFF;
+      }
+
+      .luxury-glass-btn:hover {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(40, 40, 40, 0.9) 100%);
+        border-color: rgba(212, 175, 55, 0.5);
+        box-shadow: 
+          0 10px 20px -10px rgba(212, 175, 55, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .luxury-primary-btn {
+        background: linear-gradient(135deg, #D4AF37 0%, #A6882B 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #000000;
+        box-shadow: 
+          0 10px 25px -5px rgba(212, 175, 55, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .luxury-primary-btn:hover {
+        background: linear-gradient(135deg, #EAD076 0%, #C4A133 100%);
+        box-shadow: 
+          0 15px 35px -5px rgba(212, 175, 55, 0.5),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .luxury-primary-btn:active {
+        transform: scale(0.98);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .tab-pane { display: none !important; }
+      .tab-pane.active { display: flex !important; }
+      
+      /* Custom Scrollbar for Accordions/Forms */
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #0A0A0A; }
+      ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+    </style>
+  </head>
+  <body class="min-h-screen py-8 px-4 flex flex-col items-center justify-center relative overflow-x-hidden select-none font-sans antialiased">
+    
+    <!-- Background Image with Silver/Platinum Filter -->
+    <div class="fixed inset-0 z-0 bg-black">
+      <img 
+        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1632&auto=format&fit=crop" 
+        alt="Arquitetura Corporativa de Alto Padrão" 
+        class="w-full h-full object-cover bg-silver-overlay opacity-55 pointer-events-none"
+      />
+      <!-- Silver tint layer overlay para garantir o tom prata -->
+      <div class="absolute inset-0 bg-[#A0A0A0] mix-blend-overlay opacity-40 pointer-events-none"></div>
+      <!-- Black Gradient Overlay (Mais leve no topo para revelar a imagem e escuro embaixo para os textos) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/70 to-black pointer-events-none"></div>
+    </div>
+
+    <!-- Luxury Gold Fog Highlights -->
+    <div class="absolute top-[5%] left-[-10%] w-[350px] h-[350px] rounded-full bg-[#D4AF37]/10 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#D4AF37]/5 blur-[100px] pointer-events-none"></div>
+    
+    <!-- Main Container Card Wrapper -->
+    <div class="w-full max-w-[420px] relative z-10 flex flex-col items-center px-1" id="card-wrapper">
+      
+      <!-- Upper Floating Quick Actions Bar -->
+      <div class="w-full flex justify-end gap-2 mb-3" id="quick-actions-bar">
+        <button 
+          id="qr-toggle-btn"
+          class="w-10 h-10 rounded-full flex items-center justify-center luxury-glass-btn hover:text-jc-gold"
+          title="Compartilhar via QR Code"
+        >
+          <i data-lucide="qr-code" class="w-4 h-4 text-jc-gold"></i>
+        </button>
+        
+        <button 
+          id="copy-link-btn"
+          class="w-10 h-10 rounded-full flex items-center justify-center luxury-glass-btn hover:text-jc-gold relative"
+          title="Copiar Link do Cartão"
+        >
+          <i id="copy-icon" data-lucide="share-2" class="w-4 h-4 text-jc-gold"></i>
+          
+          <span 
+            id="copied-toast"
+            class="absolute bottom-12 right-0 bg-[#1A1A1A] text-[10px] text-white px-3 py-1.5 rounded-lg whitespace-nowrap border border-jc-gold/30 shadow-xl transition-all duration-200 pointer-events-none opacity-0 scale-95 translate-y-2"
+          >
+            Link copiado!
+          </span>
+        </button>
+      </div>
+
+      <!-- QR Code Panel Dropdown -->
+      <div 
+        id="qr-panel"
+        class="w-full overflow-hidden bg-[#0A0A0A]/95 border border-jc-gold/30 rounded-2xl p-6 mb-4 backdrop-blur-md flex flex-col items-center text-center shadow-lg hidden"
+      >
+        <h3 class="text-jc-gold font-display text-sm font-semibold mb-2 tracking-wide">Compartilhe o Cartão</h3>
+        <p class="text-gray-400 text-xs px-2 mb-4 font-light">
+          Escaneie para salvar o contato da JC Contabilidade diretamente no seu celular.
+        </p>
+        
+        <div class="bg-white p-2.5 rounded-xl mb-4 shadow-sm">
+          <img 
+            id="qr-img"
+            src="" 
+            alt="QR Code Lene Borges" 
+            class="w-40 h-40"
+          />
+        </div>
+
+        <div class="flex gap-2 w-full">
+          <button 
+            id="qr-copy-btn"
+            class="flex-1 luxury-glass-btn rounded-lg py-2.5 text-xs font-semibold hover:text-jc-gold flex items-center justify-center gap-1.5"
+          >
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="qr-copy-text">Copiar Link</span>
+          </button>
+          <button 
+            id="qr-close-btn"
+            class="luxury-glass-btn rounded-lg px-4 py-2.5 text-xs text-gray-300 hover:text-white"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN LUXURIOUS GLASS CARD -->
+      <main 
+        class="w-full luxury-glass-card rounded-[2rem] p-6 md:p-8 flex flex-col items-center relative overflow-hidden"
+        id="main-glass-card"
+      >
+        <!-- Top ambient light line -->
+        <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-jc-gold/50 to-transparent pointer-events-none"></div>
+
+        <!-- PROFILE SECTION -->
+        <section class="flex flex-col items-center text-center w-full mb-6 mt-4" id="profile-section">
+
+          <!-- Foto de Perfil (Isolada no topo) -->
+          <div class="relative mb-5 group" id="photo-container">
+            <!-- Profile Photo with gold border -->
+            <div class="w-[120px] h-[120px] rounded-full border-[2px] border-jc-gold bg-[#111] overflow-hidden p-0 relative z-10 flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+              <!-- Profile Photo -->
+              <img 
+                src="foto.jpg" 
+                alt="Lene Borges" 
+                class="w-full h-full object-cover"
+                onerror="this.src='https://placehold.co/300x300/111111/D4AF37?text=FOTO'"
+              />
+            </div>
+            <!-- Verified Check Badge -->
+            <div class="absolute bottom-0 right-0 w-7 h-7 bg-[#000] rounded-full flex items-center justify-center border border-jc-gold z-20 shadow-md">
+              <i data-lucide="award" class="w-3.5 h-3.5 text-jc-gold"></i>
+            </div>
+          </div>
+
+          <!-- Textos e Logo (Separados por barra dourada) -->
+          <div class="flex items-center justify-center w-full px-2 mb-4">
+            
+            <!-- Textos (Nome + Cargo) alinhados à direita contra a barra -->
+            <div class="text-right flex flex-col justify-center pr-4">
+              <h1 class="text-2xl font-display font-bold tracking-wide text-white leading-none mb-1.5">
+                Lene Borges
+              </h1>
+              <span class="text-jc-gold text-[9px] font-sans tracking-[0.15em] font-bold uppercase block">
+                Contabilidade Estratégica
+              </span>
+            </div>
+
+            <!-- Linha Dourada Separadora (Gradiente para mais elegância) -->
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-jc-gold to-transparent opacity-70"></div>
+            
+            <!-- Logomarca à direita (50% maior) -->
+            <div class="pl-4 flex items-center">
+              <img src="logo.png" alt="JC Contabilidade Logo" class="h-[72px] w-auto object-contain drop-shadow-xl" />
+            </div>
+
+          </div>
+
+          <p class="text-gray-300 text-xs font-light leading-relaxed max-w-[300px] px-1">
+            Inteligência patrimonial, blindagem corporativa e <span class="text-white font-medium">gestão de alto padrão</span> para o seu negócio.
+          </p>
+        </section>
+
+        <!-- THEMED TABS CONTROLS SWITCHER -->
+        <nav class="w-full flex bg-[#111111]/80 p-1 rounded-xl mb-6 border border-jc-gold/15 shadow-inner" id="tab-nav">
+          <button
+            id="tab-btn-geral"
+            onclick="switchTab('geral')"
+            class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center bg-jc-black border border-jc-gold/40 text-jc-gold shadow-md"
+          >
+            Contato
+          </button>
+          <button
+            id="tab-btn-servicos"
+            onclick="switchTab('servicos')"
+            class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white"
+          >
+            Serviços
+          </button>
+          <button
+            id="tab-btn-calculadora"
+            onclick="switchTab('calculadora')"
+            class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white"
+          >
+            Análise
+          </button>
+          <button
+            id="tab-btn-contato"
+            onclick="switchTab('contato')"
+            class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white"
+          >
+            Agendar
+          </button>
+        </nav>
+
+        <!-- SCENE CONTENT AREA -->
+        <div class="w-full flex-1 min-h-[280px]" id="tab-content-area">
+          
+          <!-- TAB-A: GENERAL INFO (CONTATO) -->
+          <div id="pane-geral" class="tab-pane active fade-in flex flex-col w-full">
+            <button 
+              onclick="triggerVCardDownload()" 
+              class="w-full luxury-primary-btn rounded-xl py-4 flex justify-center items-center gap-2.5 font-bold tracking-wider uppercase text-[11px] mb-5 cursor-pointer relative overflow-hidden"
+            >
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Salvar na Agenda</span>
+            </button>
+
+            <!-- Quick connect buttons -->
+            <div class="grid grid-cols-2 gap-3 w-full mb-6">
+              <!-- WhatsApp Connection -->
+              <a 
+                href="https://wa.me/5511999999999?text=Ol%C3%A1%20Lene%2C%20acessei%20seu%20cart%C3%A3o%20exclusivo%20e%20gostaria%20de%20agendar%20um%20atendimento." 
+                target="_blank" 
+                class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
+              >
+                <div class="absolute inset-0 bg-jc-gold opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <i data-lucide="phone" class="w-5 h-5 mb-2 text-jc-gold group-hover:scale-110 transition-transform"></i>
+                <span class="text-[11px] font-medium tracking-wide">WhatsApp</span>
+              </a>
+
+              <!-- Email Connection -->
+              <a 
+                href="mailto:contato@jccontabilidade.com.br" 
+                class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
+              >
+                <div class="absolute inset-0 bg-jc-gold opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <i data-lucide="mail" class="w-5 h-5 mb-2 text-jc-gold group-hover:scale-110 transition-transform"></i>
+                <span class="text-[11px] font-medium tracking-wide">E-mail</span>
+              </a>
+
+              <!-- Instagram Redirect -->
+              <a 
+                href="https://www.instagram.com/jc_contabilidadeltda/"
+                target="_blank"
+                class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
+              >
+                <div class="absolute inset-0 bg-jc-gold opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <!-- Ícone SVG direto para garantir carregamento instantâneo -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mb-2 text-jc-gold group-hover:scale-110 transition-transform">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span class="text-[11px] font-medium tracking-wide">Instagram</span>
+              </a>
+
+              <!-- Location Info -->
+              <a 
+                href="https://maps.app.goo.gl/ECqfb2wVxoDJVbAo8" 
+                target="_blank" 
+                class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
+              >
+                <div class="absolute inset-0 bg-jc-gold opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <i data-lucide="map-pin" class="w-5 h-5 mb-2 text-jc-gold group-hover:scale-110 transition-transform"></i>
+                <span class="text-[11px] font-medium tracking-wide">Escritório</span>
+              </a>
+            </div>
+
+            <!-- CTA Call to Action para Agendamento -->
+            <button 
+              onclick="switchTab('contato')"
+              class="w-full bg-[#111111] hover:bg-jc-gold hover:text-black text-jc-gold border border-jc-gold/40 rounded-xl py-3.5 flex justify-center items-center gap-2 font-bold tracking-widest uppercase text-[10px] shadow-lg transition-all duration-300"
+            >
+              <i data-lucide="bar-chart" class="w-4 h-4"></i>
+              <span>Solicitar Diagnóstico Estratégico</span>
+            </button>
+          </div>
+
+          <!-- TAB-B: SERVIÇOS PREMIUM -->
+          <div id="pane-servicos" class="tab-pane fade-in flex flex-col w-full space-y-3">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-jc-gold/20">
+              <h3 class="text-white font-display text-sm font-semibold flex items-center gap-1.5">
+                <i data-lucide="diamond" class="w-4 h-4 text-jc-gold"></i>
+                <span class="text-[11px] uppercase tracking-widest text-gray-300">Soluções Premium</span>
+              </h3>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-reforma">
+              <button onclick="toggleService('reforma')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Transição da Reforma Tributária</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Adaptação segura às novas regras fiscais.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Planejamento inteligente para transição do seu negócio frente à Reforma Tributária. Minimizamos impactos financeiros e garantimos compliance rigoroso para que sua empresa continue crescendo de forma rentável.
+                </p>
+                <button onclick="selectServiceAndNavigate('Transição da Reforma Tributária')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-abertura">
+              <button onclick="toggleService('abertura')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="building-2" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Abertura e Regularização</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Constituição sólida e conformidade.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Estruturação societária de alto padrão desde o primeiro dia. Regularizamos seu negócio ou abrimos sua nova empresa com foco na segurança patrimonial e na adequação tributária perfeita.
+                </p>
+                <button onclick="selectServiceAndNavigate('Abertura e Regularização de Empresas')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-planejamento">
+              <button onclick="toggleService('planejamento')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="scale" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Planejamento Tributário Estratégico</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Otimização legal da carga fiscal.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Análise profunda e contínua da estrutura empresarial para garantir o pagamento estritamente necessário de impostos. Estratégias seguras e comprovadas para maximizar o seu caixa.
+                </p>
+                <button onclick="selectServiceAndNavigate('Planejamento Tributário Estratégico')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-holdings">
+              <button onclick="toggleService('holdings')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="shield" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Societário Holdings e Ativos</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Inteligência patrimonial e blindagem.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Assessoria especializada na criação de Holdings para proteção de bens, organização de ativos e planejamento sucessório empresarial. Garantimos a blindagem total com máxima segurança jurídica.
+                </p>
+                <button onclick="selectServiceAndNavigate('Societário Holdings e Ativos')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-relatorios">
+              <button onclick="toggleService('relatorios')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Relatórios Gerenciais</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Dados precisos para decisões estratégicas.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Traduzimos a complexidade contábil em painéis financeiros claros. Fornecemos visibilidade exata sobre custos e receitas para embasar as tomadas de decisão da alta diretoria do seu negócio.
+                </p>
+                <button onclick="selectServiceAndNavigate('Relatórios Gerenciais')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="rounded-xl border border-jc-gold/20 bg-[#111111]/60 overflow-hidden transition-all hover:border-jc-gold/50" id="service-assessoria">
+              <button onclick="toggleService('assessoria')" class="w-full text-left p-4 flex items-center justify-between gap-3 cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-jc-gold/10 text-jc-gold border border-jc-gold/20 shrink-0">
+                    <i data-lucide="headset" class="w-4 h-4"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <h4 class="text-[12px] font-semibold text-white tracking-wide">Assessoria Contínua</h4>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Acompanhamento e consultoria de alto nível.</p>
+                  </div>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold chevron-icon"></i>
+              </button>
+              <div class="expanded-content px-4 pb-4 pt-0 hidden fade-in">
+                <p class="text-[11px] text-gray-400 font-light leading-relaxed border-t border-jc-gold/10 pt-3">
+                  Um modelo consultivo permanente. Esteja sempre amparado por especialistas que acompanham a evolução mensal da sua empresa, identificando riscos e oportunidades de forma proativa.
+                </p>
+                <button onclick="selectServiceAndNavigate('Assessoria Contínua')" class="mt-3 text-[10px] font-bold text-jc-gold hover:text-white flex items-center gap-1 uppercase tracking-wider transition-colors cursor-pointer">
+                  <span>Agendar sobre esse assunto</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB-C: SIMULADOR (ANÁLISE DE ECONOMIA TRIBUTÁRIA) -->
+          <div id="pane-calculadora" class="tab-pane fade-in flex flex-col w-full text-white">
+            <div class="flex items-center gap-2 pb-2 border-b border-jc-gold/20 mb-4">
+              <i data-lucide="bar-chart-2" class="w-4 h-4 text-jc-gold"></i>
+              <h3 class="text-white font-display text-sm font-semibold tracking-wide">Diagnóstico de Economia</h3>
+            </div>
+
+            <p class="text-[11px] text-gray-300 font-light leading-relaxed mb-5">
+              Simule o impacto financeiro de um planejamento contábil eficiente na sua empresa em comparação à gestão comum.
+            </p>
+
+            <div class="space-y-5 bg-[#111111] p-5 rounded-xl border border-jc-gold/20 mb-5 shadow-inner">
+              <div class="space-y-2">
+                <div class="flex justify-between items-center text-[10px] font-semibold text-gray-400 tracking-widest uppercase">
+                  <span>Faturamento Mensal (Média)</span>
+                  <span id="label-revenue" class="text-jc-gold font-mono font-bold text-xs">R$ 50.000</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="10000" 
+                  max="500000" 
+                  step="10000"
+                  value="50000"
+                  id="calc-revenue"
+                  class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-jc-gold"
+                  oninput="updateTaxCalculator()"
+                />
+              </div>
+
+              <!-- Comparative Results -->
+              <div class="grid grid-cols-2 gap-3 pt-3 border-t border-jc-gold/10">
+                <div>
+                  <span class="text-[8px] font-mono font-bold text-gray-500 uppercase tracking-widest block mb-1">Contabilidade Comum</span>
+                  <div class="text-[10px] text-gray-400">Custo Tributário Estimado:</div>
+                  <div id="result-common" class="text-sm font-bold text-gray-300 font-mono mt-0.5">R$ 7.750,00</div>
+                </div>
+                <div class="border-l border-jc-gold/20 pl-3">
+                  <span class="text-[8px] font-mono font-bold text-jc-gold uppercase tracking-widest block mb-1">Contabilidade JC</span>
+                  <div class="text-[10px] text-gray-400">Custo Otimizado Estimado:</div>
+                  <div id="result-optimized" class="text-sm font-bold text-white font-mono mt-0.5">R$ 5.250,00</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Economy Highlight -->
+            <div class="bg-gradient-to-r from-jc-gold/20 to-[#111] border border-jc-gold/30 rounded-xl p-4 flex items-center justify-between mb-4">
+              <div>
+                <div class="text-[9px] text-jc-gold font-bold uppercase tracking-widest mb-0.5">Economia Anual Projetada</div>
+                <div class="text-[10px] text-gray-300 font-light">Valor retido no caixa da sua empresa</div>
+              </div>
+              <div class="text-right">
+                <span id="result-savings" class="text-base font-black text-white font-mono drop-shadow-md">
+                  R$ 30.000
+                </span>
+              </div>
+            </div>
+
+            <!-- Disclaimer explaining the calculation basis -->
+            <div class="bg-[#111111]/80 p-3 rounded-xl border border-gray-800 mb-5 text-[9px] text-gray-400 leading-relaxed text-justify font-light">
+              <i data-lucide="info" class="inline-block w-3 h-3 text-jc-gold mb-0.5 mr-1"></i>
+              <strong>Base do Cálculo:</strong> Esta é uma simulação referencial baseada em cenários reais de mercado. O custo da <em>"Contabilidade Comum"</em> projeta um negócio enquadrado de forma ineficiente no Lucro Presumido (carga média de 15,5%). A <em>"Contabilidade JC"</em> projeta o impacto de um planejamento tributário estratégico legal, como a migração para o Simples Nacional (Anexo III) ou aplicação de benefícios fiscais (carga otimizada de 10,5%). Os valores reais variam de acordo com o CNAE e o modelo de negócio.
+            </div>
+
+            <button 
+              onclick="switchTab('contato')"
+              class="w-full luxury-primary-btn rounded-xl py-3.5 flex justify-center items-center gap-2 font-bold tracking-widest uppercase text-[10px] shadow-lg"
+            >
+              <span>Solicitar Diagnóstico Real</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- TAB-D: CONNECT (AGENDAR REUNIÃO VIP) -->
+          <div id="pane-contato" class="tab-pane fade-in flex flex-col w-full">
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-jc-gold/20">
+              <h3 class="text-white font-display text-sm font-semibold tracking-wide">Atendimento Exclusivo</h3>
+              <i data-lucide="calendar-clock" class="w-4 h-4 text-jc-gold"></i>
+            </div>
+
+            <p class="text-[10px] text-gray-300 font-light leading-relaxed mb-4">
+              Preencha os dados abaixo para solicitar uma reunião estratégica ou atendimento personalizado.
+            </p>
+
+            <form id="lead-form" onsubmit="handleFormSubmission(event)" class="space-y-3">
+              <div>
+                <input type="text" id="form-name" required placeholder="Seu Nome" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all" />
+              </div>
+              <div>
+                <input type="text" id="form-company" required placeholder="Sua Empresa" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all" />
+              </div>
+              
+              <div class="grid grid-cols-2 gap-2">
+                <input type="email" id="form-email" required placeholder="E-mail" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all" />
+                <input type="tel" id="form-whatsapp" required placeholder="WhatsApp" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all" />
+              </div>
+
+              <div>
+                <select id="form-subject" required onchange="updateSuggestedMessage()" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-gray-300 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all appearance-none cursor-pointer">
+                  <option value="" disabled selected>Selecione o assunto desejado...</option>
+                  <option value="Transição da Reforma Tributária">Transição da Reforma Tributária</option>
+                  <option value="Abertura e Regularização de Empresas">Abertura e Regularização de Empresas</option>
+                  <option value="Planejamento Tributário Estratégico">Planejamento Tributário Estratégico</option>
+                  <option value="Societário Holdings e Ativos">Societário Holdings e Ativos</option>
+                  <option value="Relatórios Gerenciais">Relatórios Gerenciais</option>
+                  <option value="Assessoria Contínua">Assessoria Contínua</option>
+                </select>
+              </div>
+
+              <div>
+                <textarea id="form-message" rows="3" placeholder="Sua mensagem..." class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all resize-none"></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                class="w-full luxury-primary-btn rounded-xl py-3 flex justify-center items-center gap-2 font-bold tracking-widest text-[10px] uppercase shadow-lg mt-1"
+              >
+                <span>Enviar via WhatsApp</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </form>
+          </div>
+          
+        </div>
+
+        <!-- FOOTER SOCIAL CHANNELS -->
+        <footer class="w-full flex flex-col items-center gap-4 border-t border-jc-gold/20 pt-6 mt-6 relative z-10" id="footer-area">
+          
+          <!-- Logo JC Contabilidade no Rodapé (Grande) -->
+          <div class="w-32 object-contain flex items-center justify-center mb-1">
+            <img src="logo.png" alt="JC Contabilidade Logo" class="w-full h-auto drop-shadow-md mix-blend-screen" />
+          </div>
+
+          <!-- Endereço da Empresa -->
+          <div class="text-center w-full px-4 mb-2">
+            <p class="text-[10px] text-gray-400 font-light flex items-center justify-center gap-1.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-jc-gold shrink-0"></i>
+              <span>Rua Conselheiro Dantas, 142, Centro - Santo Amaro, BA</span>
+            </p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      // Global configuration
+      const currentUrl = window.location.href;
+      
+      const subjectMessages = {
+        "Transição da Reforma Tributária": "Olá Lene, gostaria de entender como a reforma tributária vai impactar meu negócio e fazer um agendamento para iniciar a transição segura.",
+        "Abertura e Regularização de Empresas": "Olá Lene, preciso de assessoria para abertura ou regularização do meu negócio de forma estratégica e com segurança patrimonial.",
+        "Planejamento Tributário Estratégico": "Olá Lene, gostaria de agendar um diagnóstico tributário para otimizar a carga fiscal da minha empresa de forma inteligente e legal.",
+        "Societário Holdings e Ativos": "Olá Lene, tenho interesse em entender mais sobre Holdings, proteção de ativos e inteligência patrimonial para meus negócios.",
+        "Relatórios Gerenciais": "Olá Lene, gostaria de agendar uma reunião para falar sobre a implementação de relatórios gerenciais para ajudar nas decisões da minha empresa.",
+        "Assessoria Contínua": "Olá Lene, gostaria de conhecer mais sobre como funciona o acompanhamento e a assessoria contínua de alto padrão da JC Contabilidade."
+      };
+
+      document.addEventListener("DOMContentLoaded", function() {
+        lucide.createIcons();
+        document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentUrl)}&color=000000&bgcolor=FFFFFF`;
+        
+        // Setup Calculator Initial State
+        updateTaxCalculator();
+
+        // Initialize form message placeholder
+        updateSuggestedMessage();
+
+        // Copy button logic
+        document.getElementById('copy-link-btn').addEventListener('click', function() {
+          navigator.clipboard.writeText(currentUrl);
+          const toast = document.getElementById('copied-toast');
+          const icon = document.getElementById('copy-icon');
+          
+          toast.classList.remove('opacity-0', 'scale-95', 'translate-y-2');
+          toast.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+          icon.setAttribute('data-lucide', 'check');
+          lucide.createIcons();
+          
+          setTimeout(() => {
+            toast.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+            toast.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+            icon.setAttribute('data-lucide', 'share-2');
+            lucide.createIcons();
+          }, 2500);
+        });
+
+        // QR Code toggles
+        const qrPanel = document.getElementById('qr-panel');
+        document.getElementById('qr-toggle-btn').addEventListener('click', () => qrPanel.classList.toggle('hidden'));
+        document.getElementById('qr-close-btn').addEventListener('click', () => qrPanel.classList.add('hidden'));
+        
+        document.getElementById('qr-copy-btn').addEventListener('click', function() {
+          navigator.clipboard.writeText(currentUrl);
+          const text = document.getElementById('qr-copy-text');
+          text.textContent = 'Copiado!';
+          setTimeout(() => text.textContent = 'Copiar Link', 2000);
+        });
+      });
+
+      function switchTab(tabId) {
+        const buttons = ['geral', 'servicos', 'calculadora', 'contato'];
+        buttons.forEach(btn => {
+          const buttonEl = document.getElementById(`tab-btn-${btn}`);
+          const paneEl = document.getElementById(`pane-${btn}`);
+          
+          buttonEl.className = "flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white";
+          paneEl.classList.remove('active');
+        });
+
+        const targetButton = document.getElementById(`tab-btn-${tabId}`);
+        const targetPane = document.getElementById(`pane-${tabId}`);
+        
+        targetButton.className = "flex-1 py-2.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center bg-jc-black border border-jc-gold/40 text-jc-gold shadow-md";
+        targetPane.classList.add('active');
+        lucide.createIcons();
+      }
+
+      function toggleService(id) {
+        const services = ['reforma', 'abertura', 'planejamento', 'holdings', 'relatorios', 'assessoria'];
+        services.forEach(srvId => {
+          const srvEl = document.getElementById(`service-${srvId}`);
+          const contentEl = srvEl.querySelector('.expanded-content');
+          const chevron = srvEl.querySelector('.chevron-icon');
+          
+          if (srvId === id && contentEl.classList.contains('hidden')) {
+            contentEl.classList.remove('hidden');
+            srvEl.classList.add('border-jc-gold');
+            srvEl.classList.remove('border-jc-gold/20');
+            chevron.setAttribute('data-lucide', 'chevron-up');
+          } else {
+            contentEl.classList.add('hidden');
+            srvEl.classList.remove('border-jc-gold');
+            srvEl.classList.add('border-jc-gold/20');
+            chevron.setAttribute('data-lucide', 'chevron-down');
+          }
+        });
+        lucide.createIcons();
+      }
+
+      function selectServiceAndNavigate(subject) {
+        const select = document.getElementById('form-subject');
+        if (select) {
+          select.value = subject;
+          updateSuggestedMessage();
+        }
+        switchTab('contato');
+      }
+
+      function updateTaxCalculator() {
+        const revenue = Number(document.getElementById('calc-revenue').value);
+        document.getElementById('label-revenue').textContent = 'R$ ' + revenue.toLocaleString('pt-BR');
+        
+        // Mock calculation for demonstration of value
+        // Common accounting (approx 15.5% effective rate for service)
+        const taxCommon = revenue * 0.155; 
+        
+        // Optimized JC Accounting (approx 10.5% effective rate applying annexes strategy)
+        const taxOptimized = revenue * 0.105; 
+        
+        const monthlySavings = taxCommon - taxOptimized;
+        const annualSavings = monthlySavings * 12;
+
+        document.getElementById('result-common').textContent = 'R$ ' + taxCommon.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('result-optimized').textContent = 'R$ ' + taxOptimized.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('result-savings').textContent = 'R$ ' + annualSavings.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function updateSuggestedMessage() {
+        const subject = document.getElementById('form-subject').value;
+        const textarea = document.getElementById('form-message');
+        if (subjectMessages[subject]) {
+          textarea.placeholder = subjectMessages[subject];
+        } else {
+          textarea.placeholder = "Sua mensagem...";
+        }
+      }
+
+      function triggerVCardDownload() {
+        const vcardData = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'N:Borges;Lene;;;',
+          'FN:Lene Borges',
+          'ORG:JC Contabilidade',
+          'TITLE:Especialista Contábil e Gestão de Alto Padrão',
+          'TEL;TYPE=CELL;TYPE=PREF;TYPE=VOICE:+5575999288649',
+          'EMAIL;TYPE=PREF,INTERNET:Comercial@jccontabilidade.online',
+          'URL:https://www.jccontabilidade.com.br/',
+          'X-SOCIALPROFILE;type=instagram:https://www.instagram.com/jc_contabilidadeltda/',
+          'NOTE:Inteligência patrimonial, blindagem corporativa e gestão de alto padrão para o seu negócio.',
+          'END:VCARD'
+        ].join('\r\n');
+        
+        const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Lene_Borges_JCContabilidade.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+
+      function handleFormSubmission(event) {
+        event.preventDefault();
+        const formName = document.getElementById('form-name').value;
+        const formCompany = document.getElementById('form-company').value;
+        const formEmail = document.getElementById('form-email').value;
+        const formWhatsapp = document.getElementById('form-whatsapp').value;
+        const formSubject = document.getElementById('form-subject').value;
+        
+        let formMessage = document.getElementById('form-message').value;
+        // Se a pessoa não digitou nada, usa a mensagem sugerida
+        if (!formMessage || formMessage.trim() === '') {
+            formMessage = subjectMessages[formSubject] || "Gostaria de agendar um atendimento.";
+        }
+
+        const baseMessageText = `*Solicitação de Atendimento VIP - JC Contabilidade*\n\n*Meus Dados:*\n• *Nome:* ${formName}\n• *Empresa:* ${formCompany}\n• *E-mail:* ${formEmail}\n• *WhatsApp:* ${formWhatsapp}\n• *Assunto:* ${formSubject}\n\n*Mensagem:*\n${formMessage}`;
+        
+        const whatsappUrl = `https://wa.me/5575999288649?text=${encodeURIComponent(baseMessageText)}`;
+        window.open(whatsappUrl, '_blank');
+      }
+    </script>
+  </body>
+</html>
