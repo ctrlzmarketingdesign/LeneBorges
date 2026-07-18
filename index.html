@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lene Borges | JC Contabilidade</title>
+    
+    <!-- Open Graph / SEO (WhatsApp, LinkedIn, Instagram) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.jccontabilidade.com.br/" />
+    <meta property="og:title" content="Lene Borges | Contabilidade Estratégica" />
+    <meta property="og:description" content="Inteligência patrimonial, blindagem corporativa e gestão de alto padrão para o seu negócio." />
+    <meta property="og:image" content="https://www.jccontabilidade.com.br/foto.jpg" />
+    <meta property="og:site_name" content="JC Contabilidade" />
+    
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lene Borges | Contabilidade Estratégica" />
+    <meta name="twitter:description" content="Inteligência patrimonial, blindagem corporativa e gestão de alto padrão para o seu negócio." />
+    <meta name="twitter:image" content="https://www.jccontabilidade.com.br/foto.jpg" />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -226,22 +241,22 @@
           <!-- Textos e Logo (Separados por barra dourada) -->
           <div class="flex items-center justify-center w-full px-2 mb-4">
             
-            <!-- Textos (Nome + Cargo) alinhados à direita contra a barra -->
-            <div class="text-right flex flex-col justify-center pr-4">
+            <!-- Logomarca à esquerda (apontando para marca.png) -->
+            <div class="pr-4 flex items-center justify-end">
+              <img src="marca.png" alt="JC Contabilidade Logo" class="h-[72px] w-auto object-contain drop-shadow-xl" />
+            </div>
+
+            <!-- Linha Dourada Separadora (Gradiente para mais elegância) -->
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-jc-gold to-transparent opacity-70"></div>
+            
+            <!-- Textos (Nome + Cargo) alinhados à esquerda contra a barra -->
+            <div class="text-left flex flex-col justify-center pl-4">
               <h1 class="text-2xl font-display font-bold tracking-wide text-white leading-none mb-1.5">
                 Lene Borges
               </h1>
               <span class="text-jc-gold text-[9px] font-sans tracking-[0.15em] font-bold uppercase block">
                 Contabilidade Estratégica
               </span>
-            </div>
-
-            <!-- Linha Dourada Separadora (Gradiente para mais elegância) -->
-            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-jc-gold to-transparent opacity-70"></div>
-            
-            <!-- Logomarca à direita (50% maior) -->
-            <div class="pl-4 flex items-center">
-              <img src="logo.png" alt="JC Contabilidade Logo" class="h-[72px] w-auto object-contain drop-shadow-xl" />
             </div>
 
           </div>
@@ -337,7 +352,7 @@
 
               <!-- Location Info -->
               <a 
-                href="https://maps.app.goo.gl/ECqfb2wVxoDJVbAo8" 
+                href="https://maps.app.goo.gl/HMxYcSaWNw1pzy5o7" 
                 target="_blank" 
                 class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
               >
@@ -613,8 +628,8 @@
                 <input type="tel" id="form-whatsapp" required placeholder="WhatsApp" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-white placeholder-gray-500 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all" />
               </div>
 
-              <div>
-                <select id="form-subject" required onchange="updateSuggestedMessage()" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 text-[11px] text-gray-300 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all appearance-none cursor-pointer">
+              <div class="relative">
+                <select id="form-subject" required onchange="updateSuggestedMessage()" class="w-full bg-[#111111] border border-jc-gold/30 rounded-lg px-3 py-2.5 pr-8 text-[11px] text-gray-300 focus:outline-none focus:border-jc-gold focus:ring-1 focus:ring-jc-gold/50 transition-all appearance-none cursor-pointer">
                   <option value="" disabled selected>Selecione o assunto desejado...</option>
                   <option value="Transição da Reforma Tributária">Transição da Reforma Tributária</option>
                   <option value="Abertura e Regularização de Empresas">Abertura e Regularização de Empresas</option>
@@ -623,6 +638,9 @@
                   <option value="Relatórios Gerenciais">Relatórios Gerenciais</option>
                   <option value="Assessoria Contínua">Assessoria Contínua</option>
                 </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-jc-gold"></i>
+                </div>
               </div>
 
               <div>
@@ -653,7 +671,7 @@
           <div class="text-center w-full px-4 mb-2">
             <p class="text-[10px] text-gray-400 font-light flex items-center justify-center gap-1.5">
               <i data-lucide="map-pin" class="w-3.5 h-3.5 text-jc-gold shrink-0"></i>
-              <span>Rua Conselheiro Dantas, 142, Centro - Santo Amaro, BA</span>
+              <span>Avenida Viana Bandeira, 104. Santo Amaro - Bahia.</span>
             </p>
           </div>
         </footer>
@@ -823,6 +841,8 @@
 
       function handleFormSubmission(event) {
         event.preventDefault();
+        triggerHaptic([20, 50, 20]); // Dupla vibração ao encaminhar formulário
+
         const formName = document.getElementById('form-name').value;
         const formCompany = document.getElementById('form-company').value;
         const formEmail = document.getElementById('form-email').value;
