@@ -742,7 +742,43 @@
         }
       }
 
-      function triggerVCardDownload() {
+      // Função para converter a imagem em texto Base64 (Embutir no VCard)
+      async function getBase64ImageFromUrl(imageUrl) {
+        return new Promise((resolve) => {
+          let img = new Image();
+          img.crossOrigin = 'Anonymous';
+          img.onload = () => {
+            let canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            let dataURL = canvas.toDataURL('image/jpeg');
+            // Remove o cabeçalho 'data:image/jpeg;base64,' e devolve apenas o código
+            resolve(dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""));
+          };
+          img.onerror = () => resolve(null);
+          img.src = imageUrl;
+        });
+      }
+
+      // Função de Download do VCard atualizada
+      async function triggerVCardDownload() {
+        // Feedback visual no botão
+        const btn = document.querySelector('button[onclick="triggerVCardDownload()"]');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Gerando...</span>';
+        lucide.createIcons();
+
+        // Converte a foto atual da página para embutir no contato
+        const photoBase64 = await getBase64ImageFromUrl('foto.jpg');
+        
+        // Se conseguir converter, embute a imagem. Senão, usa a URL como plano B.
+        let photoField = 'PHOTO;TYPE=JPEG;VALUE=URI:https://www.jccontabilidade.com.br/foto.jpg';
+        if (photoBase64) {
+          photoField = `PHOTO;ENCODING=b;TYPE=JPEG:${photoBase64}`;
+        }
+
         const vcardData = [
           'BEGIN:VCARD',
           'VERSION:3.0',
@@ -752,6 +788,7 @@
           'TITLE:Especialista Contábil e Gestão de Alto Padrão',
           'TEL;TYPE=CELL;TYPE=PREF;TYPE=VOICE:+5575999288649',
           'EMAIL;TYPE=PREF,INTERNET:Comercial@jccontabilidade.online',
+          photoField,
           'X-SOCIALPROFILE;type=instagram:https://www.instagram.com/jc_contabilidadeltda/',
           'NOTE:Inteligência patrimonial, blindagem corporativa e gestão de alto padrão para o seu negócio.',
           'END:VCARD'
@@ -767,6 +804,10 @@
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
+
+        // Retorna o botão ao normal
+        btn.innerHTML = originalText;
+        lucide.createIcons();
       }
 
       // Função de haptic feedback inserida para garantir o funcionamento do formulário sem erros no console
