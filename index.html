@@ -158,14 +158,14 @@
         </button>
         
         <button 
-          id="copy-link-btn"
+          id="share-btn"
           class="w-10 h-10 rounded-full flex items-center justify-center luxury-glass-btn hover:text-jc-gold relative"
-          title="Copiar Link do Cartão"
+          title="Compartilhar Cartão"
         >
-          <i id="copy-icon" data-lucide="share-2" class="w-4 h-4 text-jc-gold"></i>
+          <i id="share-icon" data-lucide="share-2" class="w-4 h-4 text-jc-gold"></i>
           
           <span 
-            id="copied-toast"
+            id="share-toast"
             class="absolute bottom-12 right-0 bg-[#1A1A1A] text-[10px] text-white px-3 py-1.5 rounded-lg whitespace-nowrap border border-jc-gold/30 shadow-xl transition-all duration-200 pointer-events-none opacity-0 scale-95 translate-y-2"
           >
             Link copiado!
@@ -243,7 +243,7 @@
             
             <!-- Logomarca à esquerda (apontando para marca.png) -->
             <div class="pr-4 flex items-center justify-end">
-              <img src="marca.png" alt="JC Contabilidade Logo" class="h-[72px] w-auto object-contain drop-shadow-xl" />
+              <img src="marca.png" alt="JC Contabilidade Logo" class="h-[72px] w-auto object-contain drop-shadow-xl" onerror="this.onerror=null; this.src='https://placehold.co/200x80/111111/D4AF37?text=MARCA'" />
             </div>
 
             <!-- Linha Dourada Separadora (Gradiente para mais elegância) -->
@@ -281,13 +281,6 @@
             class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white"
           >
             Serviços
-          </button>
-          <button
-            id="tab-btn-calculadora"
-            onclick="switchTab('calculadora')"
-            class="flex-1 py-2.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest rounded-lg transition-all cursor-pointer text-center text-gray-500 hover:text-white"
-          >
-            Análise
           </button>
           <button
             id="tab-btn-contato"
@@ -367,7 +360,7 @@
               onclick="switchTab('contato')"
               class="w-full bg-[#111111] hover:bg-jc-gold hover:text-black text-jc-gold border border-jc-gold/40 rounded-xl py-3.5 flex justify-center items-center gap-2 font-bold tracking-widest uppercase text-[10px] shadow-lg transition-all duration-300"
             >
-              <i data-lucide="bar-chart" class="w-4 h-4"></i>
+              <i data-lucide="calendar" class="w-4 h-4"></i>
               <span>Solicitar Diagnóstico Estratégico</span>
             </button>
           </div>
@@ -532,79 +525,7 @@
             </div>
           </div>
 
-          <!-- TAB-C: SIMULADOR (ANÁLISE DE ECONOMIA TRIBUTÁRIA) -->
-          <div id="pane-calculadora" class="tab-pane fade-in flex flex-col w-full text-white">
-            <div class="flex items-center gap-2 pb-2 border-b border-jc-gold/20 mb-4">
-              <i data-lucide="bar-chart-2" class="w-4 h-4 text-jc-gold"></i>
-              <h3 class="text-white font-display text-sm font-semibold tracking-wide">Diagnóstico de Economia</h3>
-            </div>
-
-            <p class="text-[11px] text-gray-300 font-light leading-relaxed mb-5">
-              Simule o impacto financeiro de um planejamento contábil eficiente na sua empresa em comparação à gestão comum.
-            </p>
-
-            <div class="space-y-5 bg-[#111111] p-5 rounded-xl border border-jc-gold/20 mb-5 shadow-inner">
-              <div class="space-y-2">
-                <div class="flex justify-between items-center text-[10px] font-semibold text-gray-400 tracking-widest uppercase">
-                  <span>Faturamento Mensal (Média)</span>
-                  <span id="label-revenue" class="text-jc-gold font-mono font-bold text-xs">R$ 50.000</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="10000" 
-                  max="500000" 
-                  step="10000"
-                  value="50000"
-                  id="calc-revenue"
-                  class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-jc-gold"
-                  oninput="updateTaxCalculator()"
-                />
-              </div>
-
-              <!-- Comparative Results -->
-              <div class="grid grid-cols-2 gap-3 pt-3 border-t border-jc-gold/10">
-                <div>
-                  <span class="text-[8px] font-mono font-bold text-gray-500 uppercase tracking-widest block mb-1">Contabilidade Comum</span>
-                  <div class="text-[10px] text-gray-400">Custo Tributário Estimado:</div>
-                  <div id="result-common" class="text-sm font-bold text-gray-300 font-mono mt-0.5">R$ 7.750,00</div>
-                </div>
-                <div class="border-l border-jc-gold/20 pl-3">
-                  <span class="text-[8px] font-mono font-bold text-jc-gold uppercase tracking-widest block mb-1">Contabilidade JC</span>
-                  <div class="text-[10px] text-gray-400">Custo Otimizado Estimado:</div>
-                  <div id="result-optimized" class="text-sm font-bold text-white font-mono mt-0.5">R$ 5.250,00</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Economy Highlight -->
-            <div class="bg-gradient-to-r from-jc-gold/20 to-[#111] border border-jc-gold/30 rounded-xl p-4 flex items-center justify-between mb-4">
-              <div>
-                <div class="text-[9px] text-jc-gold font-bold uppercase tracking-widest mb-0.5">Economia Anual Projetada</div>
-                <div class="text-[10px] text-gray-300 font-light">Valor retido no caixa da sua empresa</div>
-              </div>
-              <div class="text-right">
-                <span id="result-savings" class="text-base font-black text-white font-mono drop-shadow-md">
-                  R$ 30.000
-                </span>
-              </div>
-            </div>
-
-            <!-- Disclaimer explaining the calculation basis -->
-            <div class="bg-[#111111]/80 p-3 rounded-xl border border-gray-800 mb-5 text-[9px] text-gray-400 leading-relaxed text-justify font-light">
-              <i data-lucide="info" class="inline-block w-3 h-3 text-jc-gold mb-0.5 mr-1"></i>
-              <strong>Base do Cálculo:</strong> Esta é uma simulação referencial baseada em cenários reais de mercado. O custo da <em>"Contabilidade Comum"</em> projeta um negócio enquadrado de forma ineficiente no Lucro Presumido (carga média de 15,5%). A <em>"Contabilidade JC"</em> projeta o impacto de um planejamento tributário estratégico legal, como a migração para o Simples Nacional (Anexo III) ou aplicação de benefícios fiscais (carga otimizada de 10,5%). Os valores reais variam de acordo com o CNAE e o modelo de negócio.
-            </div>
-
-            <button 
-              onclick="switchTab('contato')"
-              class="w-full luxury-primary-btn rounded-xl py-3.5 flex justify-center items-center gap-2 font-bold tracking-widest uppercase text-[10px] shadow-lg"
-            >
-              <span>Solicitar Diagnóstico Real</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
-
-          <!-- TAB-D: CONNECT (AGENDAR REUNIÃO VIP) -->
+          <!-- TAB-C: CONNECT (AGENDAR REUNIÃO VIP) -->
           <div id="pane-contato" class="tab-pane fade-in flex flex-col w-full">
             <div class="flex items-center justify-between pb-2 mb-3 border-b border-jc-gold/20">
               <h3 class="text-white font-display text-sm font-semibold tracking-wide">Atendimento Exclusivo</h3>
@@ -664,7 +585,7 @@
           
           <!-- Logo JC Contabilidade no Rodapé (Grande) -->
           <div class="w-32 object-contain flex items-center justify-center mb-1">
-            <img src="logo.png" alt="JC Contabilidade Logo" class="w-full h-auto drop-shadow-md mix-blend-screen" />
+            <img src="logo.png" alt="JC Contabilidade Logo" class="w-full h-auto drop-shadow-md mix-blend-screen" onerror="this.onerror=null; this.src='https://placehold.co/300x100/111111/D4AF37?text=LOGO'" />
           </div>
 
           <!-- Endereço da Empresa -->
@@ -695,29 +616,40 @@
         lucide.createIcons();
         document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentUrl)}&color=000000&bgcolor=FFFFFF`;
         
-        // Setup Calculator Initial State
-        updateTaxCalculator();
-
         // Initialize form message placeholder
         updateSuggestedMessage();
 
-        // Copy button logic
-        document.getElementById('copy-link-btn').addEventListener('click', function() {
-          navigator.clipboard.writeText(currentUrl);
-          const toast = document.getElementById('copied-toast');
-          const icon = document.getElementById('copy-icon');
-          
-          toast.classList.remove('opacity-0', 'scale-95', 'translate-y-2');
-          toast.classList.add('opacity-100', 'scale-100', 'translate-y-0');
-          icon.setAttribute('data-lucide', 'check');
-          lucide.createIcons();
-          
-          setTimeout(() => {
-            toast.classList.add('opacity-0', 'scale-95', 'translate-y-2');
-            toast.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
-            icon.setAttribute('data-lucide', 'share-2');
+        // Share/Copy button logic with Native Web Share API
+        document.getElementById('share-btn').addEventListener('click', async function() {
+          // Checando suporte da API Web Share Nativa (Abre os apps WhatsApp/Insta/etc direto no celular)
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: 'Lene Borges | JC Contabilidade',
+                text: 'Acesse meu cartão virtual e conheça a gestão de alto padrão para o seu negócio.',
+                url: currentUrl
+              });
+            } catch (err) {
+              console.log('Compartilhamento cancelado ou falhou.', err);
+            }
+          } else {
+            // Fallback para Copiar Link se o navegador/dispositivo não suportar o compartilhamento nativo
+            navigator.clipboard.writeText(currentUrl);
+            const toast = document.getElementById('share-toast');
+            const icon = document.getElementById('share-icon');
+            
+            toast.classList.remove('opacity-0', 'scale-95', 'translate-y-2');
+            toast.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+            icon.setAttribute('data-lucide', 'check');
             lucide.createIcons();
-          }, 2500);
+            
+            setTimeout(() => {
+              toast.classList.add('opacity-0', 'scale-95', 'translate-y-2');
+              toast.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+              icon.setAttribute('data-lucide', 'share-2');
+              lucide.createIcons();
+            }, 2500);
+          }
         });
 
         // QR Code toggles
@@ -734,7 +666,8 @@
       });
 
       function switchTab(tabId) {
-        const buttons = ['geral', 'servicos', 'calculadora', 'contato'];
+        // Removida aba 'calculadora' do array de botões
+        const buttons = ['geral', 'servicos', 'contato'];
         buttons.forEach(btn => {
           const buttonEl = document.getElementById(`tab-btn-${btn}`);
           const paneEl = document.getElementById(`pane-${btn}`);
@@ -782,25 +715,6 @@
         switchTab('contato');
       }
 
-      function updateTaxCalculator() {
-        const revenue = Number(document.getElementById('calc-revenue').value);
-        document.getElementById('label-revenue').textContent = 'R$ ' + revenue.toLocaleString('pt-BR');
-        
-        // Mock calculation for demonstration of value
-        // Common accounting (approx 15.5% effective rate for service)
-        const taxCommon = revenue * 0.155; 
-        
-        // Optimized JC Accounting (approx 10.5% effective rate applying annexes strategy)
-        const taxOptimized = revenue * 0.105; 
-        
-        const monthlySavings = taxCommon - taxOptimized;
-        const annualSavings = monthlySavings * 12;
-
-        document.getElementById('result-common').textContent = 'R$ ' + taxCommon.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('result-optimized').textContent = 'R$ ' + taxOptimized.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('result-savings').textContent = 'R$ ' + annualSavings.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
-
       function updateSuggestedMessage() {
         const subject = document.getElementById('form-subject').value;
         const textarea = document.getElementById('form-message');
@@ -837,6 +751,13 @@
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
+      }
+
+      // Função de haptic feedback inserida para garantir o funcionamento do formulário sem erros no console
+      function triggerHaptic(pattern) {
+        if (navigator.vibrate) {
+          navigator.vibrate(pattern);
+        }
       }
 
       function handleFormSubmission(event) {
