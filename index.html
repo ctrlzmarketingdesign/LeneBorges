@@ -319,7 +319,7 @@
 
               <!-- Email Connection -->
               <a 
-                href="mailto:contato@jccontabilidade.com.br" 
+                href="mailto:Comercial@jccontabilidade.online" 
                 class="luxury-glass-btn flex flex-col items-center justify-center p-4 rounded-xl group relative overflow-hidden"
               >
                 <div class="absolute inset-0 bg-jc-gold opacity-0 group-hover:opacity-10 transition-opacity"></div>
@@ -619,22 +619,20 @@
         // Initialize form message placeholder
         updateSuggestedMessage();
 
-        // Share/Copy button logic with Native Web Share API
+        // Share/Copy button logic with Native Web Share API & PC Detection
         document.getElementById('share-btn').addEventListener('click', async function() {
-          // Checando suporte da API Web Share Nativa (Abre os apps WhatsApp/Insta/etc direto no celular)
-          if (navigator.share) {
-            try {
-              await navigator.share({
-                title: 'Lene Borges | JC Contabilidade',
-                text: 'Acesse meu cartão virtual e conheça a gestão de alto padrão para o seu negócio.',
-                url: currentUrl
-              });
-            } catch (err) {
-              console.log('Compartilhamento cancelado ou falhou.', err);
-            }
-          } else {
-            // Fallback para Copiar Link se o navegador/dispositivo não suportar o compartilhamento nativo
-            navigator.clipboard.writeText(currentUrl);
+          // Detecta se é um dispositivo móvel (Celulares e Tablets)
+          const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+          
+          const executeFallbackCopy = () => {
+            // Usando execCommand para garantir o funcionamento em PCs e Iframes
+            const tempInput = document.createElement('input');
+            tempInput.value = currentUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
             const toast = document.getElementById('share-toast');
             const icon = document.getElementById('share-icon');
             
@@ -649,6 +647,25 @@
               icon.setAttribute('data-lucide', 'share-2');
               lucide.createIcons();
             }, 2500);
+          };
+
+          // Se for celular E o navegador suportar, tenta abrir a janela de compartilhamento nativa
+          if (navigator.share && isMobile) {
+            try {
+              await navigator.share({
+                title: 'Lene Borges | JC Contabilidade',
+                text: 'Acesse meu cartão virtual e conheça a gestão de alto padrão para o seu negócio.',
+                url: currentUrl
+              });
+            } catch (err) {
+              // Se o compartilhamento falhar (e não for um cancelamento do usuário), força a cópia
+              if (err.name !== 'AbortError') {
+                executeFallbackCopy();
+              }
+            }
+          } else {
+            // No PC (ou navegadores sem suporte), ignora o erro e copia o link direto com sucesso
+            executeFallbackCopy();
           }
         });
 
@@ -735,7 +752,6 @@
           'TITLE:Especialista Contábil e Gestão de Alto Padrão',
           'TEL;TYPE=CELL;TYPE=PREF;TYPE=VOICE:+5575999288649',
           'EMAIL;TYPE=PREF,INTERNET:Comercial@jccontabilidade.online',
-          'URL:https://www.jccontabilidade.com.br/',
           'X-SOCIALPROFILE;type=instagram:https://www.instagram.com/jc_contabilidadeltda/',
           'NOTE:Inteligência patrimonial, blindagem corporativa e gestão de alto padrão para o seu negócio.',
           'END:VCARD'
